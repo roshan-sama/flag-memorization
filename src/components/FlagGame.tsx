@@ -8,12 +8,22 @@ import { ColorPicker } from "./ColorPicker";
 import { ColorableFlag } from "./ColorableFlag";
 import { FlagOutlineSelector } from "./FlagOutlineSelector";
 import { FLAGS } from "../lib/flagDefinitions";
-import type { GameState, GameStage, FlagDefinition } from "../types";
+import type { GameState, FlagDefinition } from "../types";
+
+const initializeFlag = (flag: FlagDefinition): FlagDefinition => {
+  return {
+    ...flag,
+    regions: flag.regions.map((region) => ({
+      ...region,
+      color: "#FFFFFF", // Initialize all regions with white
+    })),
+  };
+};
 
 const FlagGame = () => {
   const [gameStarted, setGameStarted] = useState(false);
   const [gameState, setGameState] = useState<GameState>({
-    currentFlag: FLAGS["Japan"],
+    currentFlag: initializeFlag(FLAGS["Japan"]),
     stage: "outline",
     selectedColor: null,
     selectedRegion: null,
@@ -27,7 +37,7 @@ const FlagGame = () => {
       countries[Math.floor(Math.random() * countries.length)];
 
     setGameState({
-      currentFlag: FLAGS[randomCountry],
+      currentFlag: initializeFlag(FLAGS[randomCountry]),
       stage: "outline",
       selectedColor: null,
       selectedRegion: null,
@@ -93,9 +103,11 @@ const FlagGame = () => {
   };
 
   const checkColors = () => {
-    const allCorrect = gameState.currentFlag.regions.every(
-      (region) => region.color === region.correctColor
-    );
+    const allCorrect = gameState.currentFlag.regions.every((region) => {
+      const currentColor = region.color || "#FFFFFF";
+      const correctColor = region.correctColor || "#FFFFFF";
+      return currentColor.toUpperCase() === correctColor.toUpperCase();
+    });
 
     if (allCorrect) {
       setGameState({
