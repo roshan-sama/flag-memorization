@@ -274,8 +274,29 @@ async function postProcessFlags() {
     }
 
     // Parse the FLAGS object
-    const rawFlags: RawFlagData = eval(`(${flagsObjectMatch[1]})`);
-    console.log(rawFlags, "raw flags");
+    // First, let's extract just the SVG content from each flag definition
+    const flagRegex = /(\w+):\s*{([^}]+)}/g;
+    const rawFlags: RawFlagData = {};
+
+    let match;
+    while ((match = flagRegex.exec(rawFileContent)) !== null) {
+      const countryCode = match[1];
+      const flagContent = match[2];
+
+      // Extract name and completeOutlinePath using individual regex
+      const nameMatch = flagContent.match(/name:\s*["']([^"']+)["']/);
+      const pathMatch = flagContent.match(/completeOutlinePath:\s*"([^"]+)"/);
+
+      console.debug(nameMatch, pathMatch);
+      if (nameMatch && pathMatch) {
+        rawFlags[countryCode] = {
+          name: nameMatch[1],
+          completeOutlinePath: pathMatch[1].trim(),
+        };
+      }
+    }
+
+    console.log("Parsed raw flags:", rawFlags);
     const processedFlags: ProcessedFlagData = {};
 
     // Process each flag
