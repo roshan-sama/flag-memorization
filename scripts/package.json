@@ -1,0 +1,21 @@
+{
+  "name": "flag-scripts",
+  "version": "1.0.0",
+  "description": "Scripts for flag memorization game",
+  "type": "module",
+  "scripts": {
+    "generate": "node --loader ts-node/esm generateFlagDefinitions.ts"
+  },
+  "dependencies": {
+    "node-fetch": "^3.3.2",
+    "jsdom": "^24.0.0",
+    "xml2js": "^0.6.2"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "@types/jsdom": "^21.1.7",
+    "@types/xml2js": "^0.4.14",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
+  }
+}
