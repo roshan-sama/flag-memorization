@@ -388,6 +388,7 @@ async function postProcessFlags() {
     process.exit(1);
   }
 }
+
 function generateOptionSVG(pathData: string, isCorrect: boolean): string {
   return pathData; // Return just the path data, the full SVG will be constructed in generateTypeScriptFile
 }
@@ -411,12 +412,17 @@ function generateTypeScriptFile(flags: ProcessedFlagData): string {
   for (const countryCode of Object.keys(processedFlags)) {
     const flag = processedFlags[countryCode];
 
-    // Keep completeOutlinePath as a string without extra quotes
-    flag.completeOutlinePath = flag.completeOutlinePath;
+    // Convert completeOutlinePath to a string if it's not already
+    if (typeof flag.completeOutlinePath === "object") {
+      flag.completeOutlinePath = JSON.stringify(flag.completeOutlinePath)
+        .replace(/^"|"$/g, "") // Remove surrounding quotes
+        .replace(/\\"/g, '"') // Unescape internal quotes
+        .replace(/\\/g, ""); // Remove remaining escapes
+    }
 
     // Fix SVG in outlineOptions
     flag.outlineOptions = flag.outlineOptions.map((option: any) => {
-      // Create clean SVG string
+      // Create clean SVG string with proper spacing in path d attribute
       const svgString = `<svg viewBox="0 0 300 200" className="w-full h-full">
         <path
           d="${option.svg}"
@@ -433,7 +439,7 @@ function generateTypeScriptFile(flags: ProcessedFlagData): string {
 
       return {
         id: option.id,
-        svg: svgString.replace(/\n\s*/g, ""),
+        svg: svgString.replace(/\n\s*/g, "").replace(/pathd=/g, "path d="),
         isCorrect: option.isCorrect,
       };
     });
