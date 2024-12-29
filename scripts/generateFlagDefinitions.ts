@@ -32,7 +32,6 @@ async function downloadFlagSVG(countryId: string): Promise<string> {
     const url = `${WIKIMEDIA_BASE_URL}${flagName}`;
     const response = await fetch(url);
 
-    console.log("Fetching data for " + url);
     if (!response.ok) {
       throw new Error(`Failed to fetch flag SVG: ${response.statusText}`);
     }
@@ -75,38 +74,11 @@ async function processSVGContent(svgContent: string): Promise<FlagMetadata> {
 }
 
 function normalizeSVG(metadata: FlagMetadata): string {
-  // Remove XML declaration and doctype
-  let normalized = metadata.svgContent
-    .replace(/<\?xml[^>]*\?>/, "")
-    .replace(/<!DOCTYPE[^>]*>/, "")
-    .trim();
-
-  // Convert double quotes to single quotes within SVG
-  normalized = normalized.replace(/="([^"]*)"/g, "='$1'");
-
-  // Convert to standard format (300x200 viewBox)
-  normalized = normalized
-    .replace(/width='[^']*'/, "width='300'")
-    .replace(/height='[^']*'/, "height='200'")
-    .replace(/viewBox='[^']*'/, "viewBox='0 0 300 200'");
-
-  // Escape backticks, dollar signs, and backslashes for template literal
-  normalized = normalized
-    .replace(/\\/g, "\\\\") // Escape backslashes
-    .replace(/`/g, "\\`") // Escape backticks
-    .replace(/\$/g, "\\$"); // Escape dollar signs
-
-  function generateFallbackSVG(): string {
-    // Generate a basic rectangle as fallback
-    return `
-    <svg xmlns="${SVG_NAMESPACE}" viewBox="0 0 300 200">
-      <rect width="300" height="200" fill="none" stroke="black" stroke-width="1"/>
-    </svg>
-  `.trim();
-  }
-
-  // Convert newlines to spaces to ensure single line output
-  normalized = normalized.replace(/\n\s*/g, " ");
+  // Convert the SVG to our standard format (300x200 viewBox)
+  const normalized = metadata.svgContent
+    .replace(/width="[^"]*"/, 'width="300"')
+    .replace(/height="[^"]*"/, 'height="200"')
+    .replace(/viewBox="[^"]*"/, 'viewBox="0 0 300 200"');
 
   return normalized;
 }
