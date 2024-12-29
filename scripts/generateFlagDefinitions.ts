@@ -247,6 +247,11 @@ function normalizeSVG(metadata: FlagMetadata): string {
 
   console.log(normalized, "d");
 
+  // Convert newlines to spaces to ensure single line output
+  normalized = normalized.replace(/((\r*)\n(\s*))+/g, "");
+
+  console.log(normalized, "e");
+
   return normalized;
 }
 
