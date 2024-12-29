@@ -98,13 +98,13 @@ function convertToPath(
       return `M${x},${y} h${width} v${height} h-${width}Z`;
 
     case "circle":
-      const { cx, cy, rs } = attributes;
-      const r = Number(rs);
-      return `M${cx},${cy} m-${r},0 a${r},${r} 0 1,0 ${
-        r * 2
-      },0 a${r},${r} 0 1,0 -${r * 2},0`;
-
-    // Add other shape conversions as needed
+      const { cx, cy, r } = attributes;
+      if (!cx || !cy || !r) return "";
+      const radius = Number(r);
+      if (isNaN(radius)) return "";
+      return `M${cx},${cy} m-${radius},0 a${radius},${radius} 0 1,0 ${
+        radius * 2
+      },0 a${radius},${radius} 0 1,0 -${radius * 2},0`;
 
     default:
       return "";
@@ -214,13 +214,20 @@ function generateOutlineOptions(regions: ProcessedRegion[]) {
 }
 
 function mirrorPath(path: string): string {
-  // Implement path mirroring logic
-  return path; // Placeholder
+  // Transform coordinates for horizontal mirroring
+  return path.replace(/(\d+(?:\.\d+)?),(\d+(?:\.\d+)?)/g, (_, x, y) => {
+    const newX = 300 - parseFloat(x);
+    return `${newX},${y}`;
+  });
 }
 
 function rotatePath(path: string): string {
-  // Implement path rotation logic
-  return path; // Placeholder
+  // Transform coordinates for 180-degree rotation
+  return path.replace(/(\d+(?:\.\d+)?),(\d+(?:\.\d+)?)/g, (_, x, y) => {
+    const newX = 300 - parseFloat(x);
+    const newY = 200 - parseFloat(y);
+    return `${newX},${newY}`;
+  });
 }
 
 //#endregion
@@ -256,25 +263,14 @@ const __dirname = dirname(__filename);
 
 async function postProcessFlags() {
   try {
-    // Read the raw flag definitions
     const rawFlagsPath = join(__dirname, "../src/lib/flagDefinitions.tsx");
     const outputPath = join(
       __dirname,
       "../src/lib/processedFlagDefinitions.tsx"
     );
-
-    // Extract the FLAGS object from the TypeScript file
     const rawFileContent = await fs.readFile(rawFlagsPath, "utf8");
-    const flagsObjectMatch = rawFileContent.match(
-      /export const FLAGS: Record<string, FlagDefinition> = ({[\s\S]*?});/
-    );
 
-    if (!flagsObjectMatch) {
-      throw new Error("Could not find FLAGS object in file");
-    }
-
-    // Parse the FLAGS object
-    // First, let's extract just the SVG content from each flag definition
+    // Extract flag data with support for backtick strings
     const flagRegex = /(\w+):\s*{([^}]+)}/g;
     const rawFlags: RawFlagData = {};
 
@@ -283,11 +279,12 @@ async function postProcessFlags() {
       const countryCode = match[1];
       const flagContent = match[2];
 
-      // Extract name and completeOutlinePath using individual regex
       const nameMatch = flagContent.match(/name:\s*["']([^"']+)["']/);
-      const pathMatch = flagContent.match(/completeOutlinePath:\s*"([^"]+)"/);
+      // Updated to handle both quoted and backtick-wrapped content
+      const pathMatch = flagContent.match(
+        /completeOutlinePath:\s*(?:"|`)([^"`]+)(?:"|`)/
+      );
 
-      console.debug(nameMatch, pathMatch);
       if (nameMatch && pathMatch) {
         rawFlags[countryCode] = {
           name: nameMatch[1],
@@ -296,17 +293,12 @@ async function postProcessFlags() {
       }
     }
 
-    console.log("Parsed raw flags:", rawFlags);
+    console.log("Processing flags:", Object.keys(rawFlags).join(", "));
     const processedFlags: ProcessedFlagData = {};
 
-    // Process each flag
     for (const [countryCode, flagData] of Object.entries(rawFlags)) {
-      console.log(`Processing flag for ${flagData.name}...`);
-
       try {
-        // Process the SVG content
         const processedSVG = await processFlagSVG(flagData.completeOutlinePath);
-
         processedFlags[countryCode] = {
           name: flagData.name,
           completeOutlinePath: flagData.completeOutlinePath,
@@ -324,34 +316,23 @@ async function postProcessFlags() {
         };
       } catch (error) {
         console.error(`Error processing ${flagData.name}:`, error);
-        // Keep the original data if processing fails
         processedFlags[countryCode] = flagData as any;
       }
     }
 
-    // Generate the new TypeScript file
     const output = generateTypeScriptFile(processedFlags);
     await fs.writeFile(outputPath, output);
-
-    console.log("Flag post-processing complete!");
+    console.log("Flag processing complete!");
   } catch (error) {
     console.error("Error in post-processing:", error);
     process.exit(1);
   }
 }
-
 function generateOptionSVG(pathData: string, isCorrect: boolean): string {
-  return `
-    <svg viewBox="0 0 300 200" className="w-full h-full">
-      <path
-        d="${pathData}"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        ${isCorrect ? "" : `transform="${generateRandomTransform()}"`}
-      />
-    </svg>
-  `;
+  const transform = isCorrect
+    ? ""
+    : ` transform="${generateRandomTransform()}"`;
+  return `<svg viewBox="0 0 300 200" className="w-full h-full"><path d="${pathData}" fill="none" stroke="currentColor" strokeWidth="2"${transform}/></svg>`;
 }
 
 function generateRandomTransform(): string {
@@ -367,17 +348,28 @@ function generateRandomTransform(): string {
 }
 
 function generateTypeScriptFile(flags: ProcessedFlagData): string {
+  let flagsString = JSON.stringify(flags, null, 2);
+
+  // Clean up the SVG content
+  flagsString = flagsString
+    // Remove unnecessary whitespace
+    .replace(/\\n\s*/g, "")
+    .replace(/\s+/g, " ")
+    // Handle SVG content
+    .replace(/"svg":\s*"(.*?)"/g, (_, svg) => {
+      const cleanSvg = svg.replace(/\\"/g, '"').replace(/\\/g, "").trim();
+      return `"svg": (${cleanSvg})`;
+    })
+    // Fix JSX/React references
+    .replace(/"React"/g, "React")
+    // Remove quotes around JSX
+    .replace(/"(<svg.*?>.*?<\/svg>)"/g, "$1");
+
   return `// flagDefinitions.tsx
 import { FlagDefinition } from "../types";
 import React from 'react';
 
-export const FLAGS: Record<string, FlagDefinition> = ${JSON.stringify(
-    flags,
-    null,
-    2
-  )
-    .replace(/"svg": "([^"]+)"/g, (_, svg) => `"svg": (${svg})`)
-    .replace(/"React"/g, "React")};
+export const FLAGS: Record<string, FlagDefinition> = ${flagsString};
 `;
 }
 
