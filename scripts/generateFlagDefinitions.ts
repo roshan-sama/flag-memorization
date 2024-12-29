@@ -78,8 +78,8 @@ async function getUNMemberStates() {
   // For initial testing, return a small subset of countries
   return [
     { id: "JPN", name: "Japan" },
-    { id: "FRA", name: "France" },
-    { id: "NPL", name: "Nepal" },
+    // { id: "FRA", name: "France" },
+    // { id: "NPL", name: "Nepal" },
   ];
 }
 
@@ -218,11 +218,34 @@ async function processSVGContent(svgContent: string): Promise<FlagMetadata> {
 }
 
 function normalizeSVG(metadata: FlagMetadata): string {
-  // Convert the SVG to our standard format (300x200 viewBox)
-  const normalized = metadata.svgContent
-    .replace(/width="[^"]*"/, 'width="300"')
-    .replace(/height="[^"]*"/, 'height="200"')
-    .replace(/viewBox="[^"]*"/, 'viewBox="0 0 300 200"');
+  // Remove XML declaration and doctype
+  let normalized = metadata.svgContent
+    .replace(/<\?xml[^>]*\?>/, "")
+    .replace(/<!DOCTYPE[^>]*>/, "")
+    .trim();
+
+  console.log(normalized, "a");
+
+  // Convert double quotes to single quotes within SVG
+  normalized = normalized.replace(/="([^"]*)"/g, "='$1'");
+
+  console.log(normalized, "b");
+
+  // Convert to standard format (300x200 viewBox)
+  normalized = normalized
+    .replace(/width='[^']*'/, "width='300'")
+    .replace(/height='[^']*'/, "height='200'")
+    .replace(/viewBox='[^']*'/, "viewBox='0 0 300 200'");
+
+  console.log(normalized, "c");
+
+  // Escape backticks, dollar signs, and backslashes for template literal
+  normalized = normalized
+    .replace(/\\/g, "\\\\")
+    .replace(/`/g, "\\`")
+    .replace(/\$/g, "\\$");
+
+  console.log(normalized, "d");
 
   return normalized;
 }
