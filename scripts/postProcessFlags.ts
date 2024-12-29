@@ -214,20 +214,66 @@ function generateOutlineOptions(regions: ProcessedRegion[]) {
 }
 
 function mirrorPath(path: string): string {
-  // Transform coordinates for horizontal mirroring
-  return path.replace(/(\d+(?:\.\d+)?),(\d+(?:\.\d+)?)/g, (_, x, y) => {
-    const newX = 300 - parseFloat(x);
-    return `${newX},${y}`;
-  });
+  if (!path) return path;
+
+  const normalizedPath = path
+    .split(/(?=[A-Za-z])/)
+    .map((command) => {
+      const type = command[0];
+      const coords = command
+        .slice(1)
+        .trim()
+        .split(/[\s,]+/);
+
+      if (coords.length < 2) return command;
+
+      // Mirror X coordinates
+      const mirroredCoords = coords.map((val, index) => {
+        if (index % 2 === 0) {
+          // X coordinate
+          return (300 - parseFloat(val)).toFixed(2);
+        }
+        return val;
+      });
+
+      return type + mirroredCoords.join(",");
+    })
+    .join("");
+
+  return normalizedPath;
 }
 
 function rotatePath(path: string): string {
-  // Transform coordinates for 180-degree rotation
-  return path.replace(/(\d+(?:\.\d+)?),(\d+(?:\.\d+)?)/g, (_, x, y) => {
-    const newX = 300 - parseFloat(x);
-    const newY = 200 - parseFloat(y);
-    return `${newX},${newY}`;
-  });
+  if (!path) return path;
+
+  const normalizedPath = path
+    .split(/(?=[A-Za-z])/)
+    .map((command) => {
+      const type = command[0];
+      const coords = command
+        .slice(1)
+        .trim()
+        .split(/[\s,]+/);
+
+      if (coords.length < 2) return command;
+
+      // Rotate coordinates 180 degrees
+      const rotatedCoords = coords.map((val, index) => {
+        const num = parseFloat(val);
+        if (index % 2 === 0) {
+          // X coordinate
+          return (300 - num).toFixed(2);
+        } else {
+          // Y coordinate
+          return (200 - num).toFixed(2);
+        }
+      });
+
+      return type + rotatedCoords.join(",");
+    })
+    .join("");
+
+  return normalizedPath;
 }
 
 //#endregion
@@ -329,47 +375,62 @@ async function postProcessFlags() {
   }
 }
 function generateOptionSVG(pathData: string, isCorrect: boolean): string {
-  const transform = isCorrect
-    ? ""
-    : ` transform="${generateRandomTransform()}"`;
-  return `<svg viewBox="0 0 300 200" className="w-full h-full"><path d="${pathData}" fill="none" stroke="currentColor" strokeWidth="2"${transform}/></svg>`;
+  return pathData; // Return just the path data, the full SVG will be constructed in generateTypeScriptFile
 }
 
 function generateRandomTransform(): string {
   const transforms = [
-    "scale(-1, 1) translate(-300, 0)", // Horizontal flip
-    "scale(1, -1) translate(0, -200)", // Vertical flip
-    "rotate(180 150 100)", // 180-degree rotation
     "translate(50, 0)", // Slight shift right
     "translate(-50, 0)", // Slight shift left
+    "scale(-1, 1)", // Horizontal flip
+    "rotate(180, 150, 100)", // 180-degree rotation
   ];
 
   return transforms[Math.floor(Math.random() * transforms.length)];
 }
 
 function generateTypeScriptFile(flags: ProcessedFlagData): string {
-  let flagsString = JSON.stringify(flags, null, 2);
+  // First create a deep copy to avoid modifying the original data
+  const processedFlags = JSON.parse(JSON.stringify(flags));
 
-  // Clean up the SVG content
-  flagsString = flagsString
-    // Remove unnecessary whitespace
-    .replace(/\\n\s*/g, "")
-    .replace(/\s+/g, " ")
-    // Handle SVG content
-    .replace(/"svg":\s*"(.*?)"/g, (_, svg) => {
-      const cleanSvg = svg.replace(/\\"/g, '"').replace(/\\/g, "").trim();
-      return `"svg": (${cleanSvg})`;
-    })
-    // Fix JSX/React references
+  // Process each flag's data
+  for (const countryCode of Object.keys(processedFlags)) {
+    const flag = processedFlags[countryCode];
+
+    // Wrap completeOutlinePath in quotes
+    flag.completeOutlinePath = `"${flag.completeOutlinePath}"`;
+
+    // Fix SVG in outlineOptions
+    flag.outlineOptions = flag.outlineOptions.map((option: any) => ({
+      ...option,
+      svg: `(<svg viewBox="0 0 300 200" className="w-full h-full"><path d="${
+        option.svg
+      }" fill="none" stroke="currentColor" strokeWidth="2"${
+        option.isCorrect ? "" : ` transform="${generateRandomTransform()}"`
+      }/></svg>)`,
+    }));
+  }
+
+  // Convert to string with proper formatting
+  let output = JSON.stringify(processedFlags, null, 2);
+
+  // Clean up the formatting
+  output = output
+    // Remove quotes around JSX expressions
+    .replace(/"(<svg.*?>.*?<\/svg>)"/g, "$1")
+    // Fix React reference
     .replace(/"React"/g, "React")
-    // Remove quotes around JSX
-    .replace(/"(<svg.*?>.*?<\/svg>)"/g, "$1");
+    // Remove escaped quotes inside SVG attributes
+    .replace(/\\\"/g, '"')
+    // Clean up any remaining escapes
+    .replace(/\\n/g, "")
+    .replace(/\s+/g, " ");
 
   return `// flagDefinitions.tsx
 import { FlagDefinition } from "../types";
 import React from 'react';
 
-export const FLAGS: Record<string, FlagDefinition> = ${flagsString};
+export const FLAGS: Record<string, FlagDefinition> = ${output};
 `;
 }
 
