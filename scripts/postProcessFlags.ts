@@ -296,6 +296,7 @@ interface RawFlagData {
   [countryCode: string]: {
     name: string;
     completeOutlinePath: string;
+    rawOutlinePath: string;
   };
 }
 
@@ -344,11 +345,13 @@ async function postProcessFlags() {
       const pathMatch = flagContent.match(
         /completeOutlinePath:\s*(?:"|`)([^"`]+)(?:"|`)/
       );
+      const pathMatchRaw = flagContent.match(/completeOutlinePath:\s*(.*)?,/);
 
-      if (nameMatch && pathMatch) {
+      if (nameMatch && pathMatch && pathMatchRaw) {
         rawFlags[countryCode] = {
           name: nameMatch[1],
           completeOutlinePath: pathMatch[1].trim(),
+          rawOutlinePath: pathMatchRaw[1],
         };
       }
     }
@@ -361,7 +364,7 @@ async function postProcessFlags() {
         const processedSVG = await processFlagSVG(flagData.completeOutlinePath);
         processedFlags[countryCode] = {
           name: flagData.name,
-          completeOutlinePath: flagData.completeOutlinePath,
+          completeOutlinePath: flagData.rawOutlinePath,
           regions: processedSVG.regions.map((region) => ({
             id: region.id,
             path: region.path,
@@ -382,6 +385,7 @@ async function postProcessFlags() {
 
     const output = generateTypeScriptFile(processedFlags);
     await fs.writeFile(outputPath, output);
+
     console.log("Flag processing complete!");
   } catch (error) {
     console.error("Error in post-processing:", error);
@@ -408,17 +412,18 @@ function generateTypeScriptFile(flags: ProcessedFlagData): string {
   // First create a deep copy to avoid modifying the original data
   const processedFlags = JSON.parse(JSON.stringify(flags));
 
+  // console.log(flags, "fl");
   // Process each flag's data
   for (const countryCode of Object.keys(processedFlags)) {
     const flag = processedFlags[countryCode];
 
     // Convert completeOutlinePath to a string if it's not already
-    if (typeof flag.completeOutlinePath === "object") {
-      flag.completeOutlinePath = JSON.stringify(flag.completeOutlinePath)
-        .replace(/^"|"$/g, "") // Remove surrounding quotes
-        .replace(/\\"/g, '"') // Unescape internal quotes
-        .replace(/\\/g, ""); // Remove remaining escapes
-    }
+    // if (typeof flag.completeOutlinePath === "object") {
+    //   flag.completeOutlinePath = JSON.stringify(flag.completeOutlinePath)
+    //     .replace(/^"|"$/g, "") // Remove surrounding quotes
+    //     .replace(/\\"/g, '"') // Unescape internal quotes
+    //     .replace(/\\/g, ""); // Remove remaining escapes
+    // }
 
     // Fix SVG in outlineOptions
     flag.outlineOptions = flag.outlineOptions.map((option: any) => {
@@ -457,7 +462,18 @@ function generateTypeScriptFile(flags: ProcessedFlagData): string {
     // Remove any remaining escapes
     .replace(/\\\\/g, "\\")
     // Fix React import reference
-    .replace(/"React"/g, "React");
+    .replace(/"React"/g, "React")
+    .replace('"completeOutlinePath": "\\(', '"completeOutlinePath": "');
+
+  console.log(stringified, "stg");
+  // .replace('"completeOutlinePath": ""', '"completeOutlinePath": ""');
+  // console.log(stringified);
+  // console.log(stringified.match(/"completeOutlinePath": "\\\(/), "mmt");
+  // const st2 = stringified.replace(
+  //   /"completeOutlinePath": "\\\(/,
+  //   `"completeOutlinePath": "`
+  // );
+  // console.log(st2, "st2");
 
   return `// flagDefinitions.tsx
 import { FlagDefinition } from "../types";
