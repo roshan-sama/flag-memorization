@@ -21,6 +21,16 @@ const FILE_FOOTER = `
 };
 `;
 
+const WIKIMEDIA_BASE_URL =
+  "https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_";
+const SVG_NAMESPACE = "http://www.w3.org/2000/svg";
+
+interface FlagMetadata {
+  svgContent: string;
+  viewBox: string;
+  aspectRatio: string;
+}
+
 interface ProcessedFlag {
   name: string;
   id: string;
@@ -33,7 +43,7 @@ interface ProcessedFlag {
 async function generateFlagDefinitions() {
   try {
     // Create output directory if it doesn't exist
-    const outputDir = join(__dirname, "..", "src");
+    const outputDir = join(__dirname, "output");
     await mkdir(outputDir, { recursive: true });
 
     // Initialize output file with header
@@ -96,16 +106,6 @@ async function processFlagData(country: {
   }
 }
 
-async function downloadFlagSVG(countryId: string): Promise<string> {
-  console.log(`Downloading flag for ${countryId}`);
-  // This would be replaced with actual flag SVG downloading logic
-  // For now, return a placeholder
-  if (countryId === "JPN") {
-    return "M0,0 h300 v200 h-300 Z";
-  }
-  throw new Error("Flag download not implemented");
-}
-
 async function processFlag(svgData: string): Promise<any> {
   // This would process the SVG to extract regions and generate options
   // For now, return placeholder data
@@ -153,6 +153,87 @@ function generateFlagDefinition(flagData: ProcessedFlag): string {
       }
     ]
   },`;
+}
+
+async function downloadFlagSVG(countryId: string): Promise<string> {
+  try {
+    // Map country codes to their full names for Wikimedia
+    const countryNameMap: Record<string, string> = {
+      JPN: "Japan.svg",
+      FRA: "France.svg",
+      NPL: "Nepal.svg",
+      USA: "the_United_States.svg",
+      GBR: "the_United_Kingdom.svg",
+      // Add more mappings as needed
+    };
+
+    const flagName = countryNameMap[countryId];
+    if (!flagName) {
+      throw new Error(`No flag mapping found for country code: ${countryId}`);
+    }
+
+    // Construct the URL and fetch the SVG
+    const url = `${WIKIMEDIA_BASE_URL}${flagName}`;
+    const response = await fetch(url);
+
+    if (!response.ok) {
+      throw new Error(`Failed to fetch flag SVG: ${response.statusText}`);
+    }
+
+    // Get the SVG content
+    const svgContent = await response.text();
+
+    // Parse the SVG to extract necessary information
+    const metadata = await processSVGContent(svgContent);
+
+    // Normalize the SVG to our standard format
+    return normalizeSVG(metadata);
+  } catch (error) {
+    console.error(`Error downloading flag for ${countryId}:`, error);
+    // Fallback to a basic rectangle if download fails
+    return generateFallbackSVG();
+  }
+}
+
+async function processSVGContent(svgContent: string): Promise<FlagMetadata> {
+  try {
+    // Parse the SVG XML
+    const result = await parseStringPromise(svgContent);
+
+    // Extract the SVG root element attributes
+    const svgRoot = result.svg;
+    const viewBox = svgRoot.$.viewBox || "0 0 300 200";
+    const width = svgRoot.$.width || "300";
+    const height = svgRoot.$.height || "200";
+
+    return {
+      svgContent,
+      viewBox,
+      aspectRatio: `${width}:${height}`,
+    };
+  } catch (error) {
+    console.error("Error processing SVG content:", error);
+    throw error;
+  }
+}
+
+function normalizeSVG(metadata: FlagMetadata): string {
+  // Convert the SVG to our standard format (300x200 viewBox)
+  const normalized = metadata.svgContent
+    .replace(/width="[^"]*"/, 'width="300"')
+    .replace(/height="[^"]*"/, 'height="200"')
+    .replace(/viewBox="[^"]*"/, 'viewBox="0 0 300 200"');
+
+  return normalized;
+}
+
+function generateFallbackSVG(): string {
+  // Generate a basic rectangle as fallback
+  return `
+    <svg xmlns="${SVG_NAMESPACE}" viewBox="0 0 300 200">
+      <rect width="300" height="200" fill="none" stroke="black" stroke-width="1"/>
+    </svg>
+  `.trim();
 }
 
 // Execute the script
