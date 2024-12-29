@@ -4,7 +4,8 @@
   "description": "Scripts for flag memorization game",
   "type": "module",
   "scripts": {
-    "generate": "node --loader ts-node/esm generateFlagDefinitions.ts"
+    "generate-flags": "node --loader ts-node/esm generateFlagDefinitions.ts",
+    "process-flags": "node --loader ts-node/esm postProcessFlags.ts"  
   },
   "dependencies": {
     "node-fetch": "^3.3.2",
