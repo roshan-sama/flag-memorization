@@ -1,9 +1,14 @@
 // scripts/generateFlagDefinitions.ts
 import fetch from "node-fetch";
-import fs from "fs/promises";
-import path from "path";
+import { writeFile, mkdir, appendFile } from "fs/promises";
+import { join, dirname } from "path";
+import { fileURLToPath } from "url";
 import { parseStringPromise } from "xml2js";
 import { JSDOM } from "jsdom";
+
+// Get current file's directory name (ESM equivalent of __dirname)
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 // File header template
 const FILE_HEADER = `// flagDefinitions.tsx
@@ -29,14 +34,14 @@ interface ProcessedFlag {
 async function generateFlagDefinitions() {
   try {
     // Create output directory if it doesn't exist
-    const outputDir = path.join(__dirname, "..", "src");
-    await fs.mkdir(outputDir, { recursive: true });
+    const outputDir = join(__dirname, "..", "src");
+    await mkdir(outputDir, { recursive: true });
 
     // Initialize output file with header
-    const outputPath = path.join(outputDir, "flagDefinitions.tsx");
-    await fs.writeFile(outputPath, FILE_HEADER);
+    const outputPath = join(outputDir, "flagDefinitions.tsx");
+    await writeFile(outputPath, FILE_HEADER);
 
-    // Get initial country list from UN Members API
+    // Get initial country list
     const countries = await getUNMemberStates();
 
     // Process each country
@@ -44,12 +49,12 @@ async function generateFlagDefinitions() {
       const flagData = await processFlagData(country);
       if (flagData) {
         const flagDefinition = generateFlagDefinition(flagData);
-        await appendToFile(outputPath, flagDefinition);
+        await appendFile(outputPath, flagDefinition);
       }
     }
 
     // Add file footer
-    await fs.appendFile(outputPath, FILE_FOOTER);
+    await appendFile(outputPath, FILE_FOOTER);
 
     console.log("Flag definitions generated successfully!");
   } catch (error) {
