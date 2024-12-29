@@ -43,7 +43,7 @@ interface ProcessedFlag {
 async function generateFlagDefinitions() {
   try {
     // Create output directory if it doesn't exist
-    const outputDir = join(__dirname, "output");
+    const outputDir = join(__dirname, "..", "src", "lib");
     await mkdir(outputDir, { recursive: true });
 
     // Initialize output file with header
@@ -219,10 +219,29 @@ async function processSVGContent(svgContent: string): Promise<FlagMetadata> {
 
 function normalizeSVG(metadata: FlagMetadata): string {
   // Remove XML declaration and doctype
-  let normalized = metadata.svgContent
+  let normalized = metadata.svgContent;
+
+  if (!normalized) {
+    console.error("svgContent missing from metadata");
+    return "";
+  }
+
+  normalized = normalized
     .replace(/<\?xml[^>]*\?>/, "")
     .replace(/<!DOCTYPE[^>]*>/, "")
     .trim();
+
+  // First get the original dimensions
+  const originalWidth = parseInt(
+    normalized.match(/width="?(\d+)"?/)?.[1] ?? ""
+  );
+  const originalHeight = parseInt(
+    normalized.match(/height="?(\d+)"?/)?.[1] ?? ""
+  );
+
+  // Calculate scaling factors
+  const scaleX = 300 / originalWidth;
+  const scaleY = 200 / originalHeight;
 
   // Convert double quotes to single quotes within SVG
   normalized = normalized.replace(/="([^"]*)"/g, "='$1'");
@@ -232,6 +251,22 @@ function normalizeSVG(metadata: FlagMetadata): string {
     .replace(/width='[^']*'/, "width='300'")
     .replace(/height='[^']*'/, "height='200'")
     .replace(/viewBox='[^']*'/, "viewBox='0 0 300 200'");
+
+  // Scale all numerical values in the SVG
+  normalized = normalized.replace(/(\d+(\.\d+)?)/g, (match) => {
+    const num = parseFloat(match);
+    // If this is a width/height/x coordinate
+    if (match === originalWidth.toString()) return "300";
+    if (match === originalHeight.toString()) return "200";
+    // Scale x coordinates
+    if (normalized.includes(`cx='${match}'`)) return (num * scaleX).toFixed(2);
+    // Scale y coordinates
+    if (normalized.includes(`cy='${match}'`)) return (num * scaleY).toFixed(2);
+    // Scale radii and other dimensions
+    if (normalized.includes(`r='${match}'`))
+      return (num * Math.min(scaleX, scaleY)).toFixed(2);
+    return match;
+  });
 
   // Escape backticks, dollar signs, and backslashes for template literal
   normalized = normalized
