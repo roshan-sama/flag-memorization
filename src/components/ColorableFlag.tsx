@@ -11,7 +11,6 @@ interface ColorableFlagProps {
 export const ColorableFlag: React.FC<ColorableFlagProps> = ({
   flag,
   onRegionClick,
-  selectedRegion,
 }) => {
   return (
     <div className="w-full max-w-xl mx-auto">
