@@ -9,5 +9,5 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
-  base: "/flag-memorization/",
+  // base: // Only modify if not deploying via github actions
 });
