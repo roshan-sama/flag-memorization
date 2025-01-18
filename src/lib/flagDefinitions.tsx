@@ -1,4 +1,4 @@
-// flagDefinitions.ts
+// flagDefinitions.tsx
 import { FlagDefinition } from "../types";
 
 export const FLAGS: Record<string, FlagDefinition> = {
