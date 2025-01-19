@@ -330,68 +330,79 @@ export const FLAGS: Record<string, FlagDefinition> = {
       },
     ],
   },
-  // Benin: {
-  //   name: "Benin",
-  //   completeOutlinePath: "M0,0 h300 v200 h-300 Z M100,0 L100,200",
-  //   outlineOptions: [
-  //     {
-  //       id: "correct",
-  //       svg: (
-  //         <svg viewBox="0 0 300 200" className="w-full h-full">
-  //           <path
-  //             d="M100,0 L100,200"
-  //             fill="none"
-  //             stroke="currentColor"
-  //             strokeWidth="2"
-  //           />
-  //         </svg>
-  //       ),
-  //       isCorrect: true,
-  //     },
-  //     {
-  //       id: "wrong1",
-  //       svg: (
-  //         <svg viewBox="0 0 300 200" className="w-full h-full">
-  //           <path
-  //             d="M150,0 L150,200"
-  //             fill="none"
-  //             stroke="currentColor"
-  //             strokeWidth="2"
-  //           />
-  //         </svg>
-  //       ),
-  //       isCorrect: false,
-  //     },
-  //     {
-  //       id: "wrong2",
-  //       svg: (
-  //         <svg viewBox="0 0 300 200" className="w-full h-full">
-  //           <path
-  //             d="M0,100 L300,100"
-  //             fill="none"
-  //             stroke="currentColor"
-  //             strokeWidth="2"
-  //           />
-  //         </svg>
-  //       ),
-  //       isCorrect: false,
-  //     },
-  //   ],
-  //   regions: [
-  //     {
-  //       id: "left",
-  //       color: null,
-  //       path: "M0,0 h100 v200 h-100 Z",
-  //       correctColor: "#008000",
-  //     },
-  //     {
-  //       id: "right",
-  //       color: null,
-  //       path: "M100,0 h200 v200 h-200 Z",
-  //       correctColor: "#FFD700",
-  //     },
-  //   ],
-  // },
+
+  Benin: {
+    name: "Benin",
+    completeOutlinePath:
+      "M0,0 h300 v200 h-300 Z M120,0 L120,200 M120,100 L300,100",
+    outlineOptions: [
+      {
+        id: "correct",
+        svg: (
+          <svg viewBox="0 0 300 200" className="w-full h-full">
+            <path
+              d="M120,0 L120,200 M120,100 L300,100"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            />
+          </svg>
+        ),
+        isCorrect: true,
+      },
+      {
+        id: "wrong1",
+        svg: (
+          <svg viewBox="0 0 300 200" className="w-full h-full">
+            <path
+              d="M150,0 L150,200 M150,100 L300,100"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            />
+          </svg>
+        ),
+        isCorrect: false,
+      },
+      {
+        id: "wrong2",
+        svg: (
+          <svg viewBox="0 0 300 200" className="w-full h-full">
+            <path
+              d="M100,0 L100,200 M200,0 L200,200"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            />
+          </svg>
+        ),
+        isCorrect: false,
+      },
+    ],
+    regions: [
+      {
+        id: "left",
+        color: null,
+        path: "M0,0 h120 v200 h-120 Z",
+        correctColor: "#008000",
+        // correctColor: "#008751", // Green
+      },
+      {
+        id: "top-right",
+        color: null,
+        path: "M120,0 h180 v100 h-180 Z",
+        correctColor: "#FFD700", // Yellow
+        // correctColor: "#fcd116", // Yellow
+      },
+      {
+        id: "bottom-right",
+        color: null,
+        path: "M120,100 h180 v100 h-180 Z",
+        correctColor: "#FF0000", // Red
+        // correctColor: "#e8112d", // Red
+      },
+    ],
+  },
 
   // Botswana: {
   //   name: "Botswana",
