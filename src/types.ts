@@ -43,7 +43,6 @@ export const FLAG_COLORS = [
   { name: "Purple", value: "#800080" },
   { name: "Brown", value: "#8B4513" },
   { name: "Grey", value: "#808080" },
-  { name: "Gold", value: "#FFD700" },
   { name: "Dark Green", value: "#006400" },
   { name: "Light Blue", value: "#87CEEB" },
 ];
