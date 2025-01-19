@@ -23,7 +23,7 @@ const initializeFlag = (flag: FlagDefinition): FlagDefinition => {
 const FlagGame = () => {
   const [gameStarted, setGameStarted] = useState(false);
   const [gameState, setGameState] = useState<GameState>({
-    currentFlag: initializeFlag(FLAGS["Japan"]),
+    currentFlag: initializeFlag(FLAGS[Object.keys(FLAGS)[0]]),
     stage: "outline",
     selectedColor: null,
     selectedRegion: null,
