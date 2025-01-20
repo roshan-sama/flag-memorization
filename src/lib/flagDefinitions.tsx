@@ -230,7 +230,6 @@ export const FLAGS: Record<string, FlagDefinition> = {
       },
     ],
   },
-
   Angola: {
     name: "Angola",
     completeOutlinePath: "M0,0 h300 v200 h-300 Z",
@@ -330,7 +329,6 @@ export const FLAGS: Record<string, FlagDefinition> = {
       },
     ],
   },
-
   Benin: {
     name: "Benin",
     completeOutlinePath:
@@ -403,20 +401,228 @@ export const FLAGS: Record<string, FlagDefinition> = {
       },
     ],
   },
-
-  // Botswana: {
-  //   name: "Botswana",
-  //   completeOutlinePath: "M0,0 h300 v200 h-300 Z M0,80 L300,80 M0,120 L300,120",
+  Botswana: {
+    name: "Botswana",
+    completeOutlinePath:
+      "M0,0 h300 v200 h-300 Z M0,75 L300,75 M0,83 L300,83 M0,117 L300,117 M0,125 L300,125",
+    outlineOptions: [
+      {
+        id: "correct",
+        svg: (
+          <svg viewBox="0 0 300 200" className="w-full h-full">
+            <path
+              d="M0,75 L300,75 M0,83 L300,83 M0,117 L300,117 M0,125 L300,125"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            />
+          </svg>
+        ),
+        isCorrect: true,
+      },
+      {
+        id: "wrong1",
+        svg: (
+          <svg viewBox="0 0 300 200" className="w-full h-full">
+            <path
+              d="M0,60 L300,60 M0,70 L300,70 M0,130 L300,130 M0,140 L300,140"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            />
+          </svg>
+        ),
+        isCorrect: false,
+      },
+      {
+        id: "wrong2",
+        svg: (
+          <svg viewBox="0 0 300 200" className="w-full h-full">
+            <path
+              d="M0,90 L300,90 M0,100 L300,100 M0,100 L300,100 M0,110 L300,110"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            />
+          </svg>
+        ),
+        isCorrect: false,
+      },
+    ],
+    regions: [
+      {
+        id: "top-blue",
+        color: null,
+        path: "M0,0 h300 v75 h-300 Z",
+        correctColor: "#87CEEB",
+        // correctColor: "#6DA9D2",
+      },
+      {
+        id: "top-white",
+        color: null,
+        path: "M0,75 h300 v8 h-300 Z",
+        correctColor: "#FFFFFF",
+      },
+      {
+        id: "black",
+        color: null,
+        path: "M0,83 h300 v34 h-300 Z",
+        correctColor: "#000000",
+      },
+      {
+        id: "bottom-white",
+        color: null,
+        path: "M0,117 h300 v8 h-300 Z",
+        correctColor: "#FFFFFF",
+      },
+      {
+        id: "bottom-blue",
+        color: null,
+        path: "M0,125 h300 v75 h-300 Z",
+        correctColor: "#87CEEB",
+        // correctColor: "#6DA9D2",
+      },
+    ],
+  },
+  "Burkina Faso": {
+    name: "Burkina Faso",
+    completeOutlinePath: "M0,0 h300 v200 h-300 Z M0,100 h300",
+    outlineOptions: [
+      {
+        id: "correct",
+        svg: (
+          <svg viewBox="0 0 300 200" className="w-full h-full">
+            <path
+              d="M0,100 h120"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            />
+            <path
+              d="M180,100 h120"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            />
+            <path
+              d="M150,50 l30.9017,95.1057 l-80.9017-58.7785 h100 l-80.9017,58.7785 l30.9017,-95.1057"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            />
+          </svg>
+        ),
+        isCorrect: true,
+      },
+      {
+        id: "wrong1",
+        svg: (
+          <svg viewBox="0 0 300 200" className="w-full h-full">
+            <path
+              d="M150,0 v200"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            />
+            <path
+              d="M150,70 l30.9017,95.1057 l-80.9017-58.7785 h100 l-80.9017,58.7785 l30.9017,-95.1057"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            />
+          </svg>
+        ),
+        isCorrect: false,
+      },
+      {
+        id: "wrong2",
+        svg: (
+          <svg viewBox="0 0 300 200" className="w-full h-full">
+            <path
+              d="M0,100 h300"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            />
+            <circle
+              cx="150"
+              cy="100"
+              r="30"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            />
+          </svg>
+        ),
+        isCorrect: false,
+      },
+    ],
+    regions: [
+      {
+        id: "top",
+        color: null,
+        path: "M0,0 h300 v100 h-300 Z",
+        correctColor: "#FF0000",
+        // correctColor: "#EF2B2D"
+      },
+      {
+        id: "bottom",
+        color: null,
+        path: "M0,100 h300 v100 h-300 Z",
+        correctColor: "#008000",
+        // correctColor: "#009E49"
+      },
+      {
+        id: "star",
+        color: null,
+        path: "M150,50 l30.9017,95.1057 l-80.9017-58.7785 h100 l-80.9017,58.7785 l30.9017,-95.1057 Z",
+        correctColor: "#FFD700",
+        // correctColor: "#FCD116"
+      },
+    ],
+  },
+  // Burundi: {
+  //   name: "Burundi",
+  //   completeOutlinePath: "M0,0 h300 v200 h-300 Z",
   //   outlineOptions: [
   //     {
   //       id: "correct",
   //       svg: (
   //         <svg viewBox="0 0 300 200" className="w-full h-full">
   //           <path
-  //             d="M0,80 L300,80 M0,120 L300,120"
+  //             d="M-10,-10 L310,210 M310,-10 L-10,210"
   //             fill="none"
   //             stroke="currentColor"
   //             strokeWidth="2"
+  //           />
+  //           <circle
+  //             cx="150"
+  //             cy="100"
+  //             r="40"
+  //             fill="none"
+  //             stroke="currentColor"
+  //             strokeWidth="2"
+  //           />
+  //           <path
+  //             d="M150,70 l10,17.32 h20 l-10,17.32 l10,17.32 h-20 l-10,17.32 l-10,-17.32 h-20 l10,-17.32 l-10,-17.32 h20 z"
+  //             fill="none"
+  //             stroke="currentColor"
+  //             strokeWidth="2"
+  //             transform="translate(0,-20)"
+  //           />
+  //           <path
+  //             d="M150,70 l10,17.32 h20 l-10,17.32 l10,17.32 h-20 l-10,17.32 l-10,-17.32 h-20 l10,-17.32 l-10,-17.32 h20 z"
+  //             fill="none"
+  //             stroke="currentColor"
+  //             strokeWidth="2"
+  //             transform="translate(34.64,20) rotate(120,150,100)"
+  //           />
+  //           <path
+  //             d="M150,70 l10,17.32 h20 l-10,17.32 l10,17.32 h-20 l-10,17.32 l-10,-17.32 h-20 l10,-17.32 l-10,-17.32 h20 z"
+  //             fill="none"
+  //             stroke="currentColor"
+  //             strokeWidth="2"
+  //             transform="translate(-34.64,20) rotate(240,150,100)"
   //           />
   //         </svg>
   //       ),
@@ -427,7 +633,15 @@ export const FLAGS: Record<string, FlagDefinition> = {
   //       svg: (
   //         <svg viewBox="0 0 300 200" className="w-full h-full">
   //           <path
-  //             d="M0,67 L300,67 M0,133 L300,133"
+  //             d="M0,100 h300 M150,0 v200"
+  //             fill="none"
+  //             stroke="currentColor"
+  //             strokeWidth="2"
+  //           />
+  //           <circle
+  //             cx="150"
+  //             cy="100"
+  //             r="40"
   //             fill="none"
   //             stroke="currentColor"
   //             strokeWidth="2"
@@ -441,7 +655,39 @@ export const FLAGS: Record<string, FlagDefinition> = {
   //       svg: (
   //         <svg viewBox="0 0 300 200" className="w-full h-full">
   //           <path
-  //             d="M100,0 L100,200 M200,0 L200,200"
+  //             d="M-10,-10 L310,210 M310,-10 L-10,210"
+  //             fill="none"
+  //             stroke="currentColor"
+  //             strokeWidth="2"
+  //           />
+  //           <circle
+  //             cx="150"
+  //             cy="100"
+  //             r="40"
+  //             fill="none"
+  //             stroke="currentColor"
+  //             strokeWidth="2"
+  //           />
+  //           <circle
+  //             cx="150"
+  //             cy="60"
+  //             r="10"
+  //             fill="none"
+  //             stroke="currentColor"
+  //             strokeWidth="2"
+  //           />
+  //           <circle
+  //             cx="184.64"
+  //             cy="120"
+  //             r="10"
+  //             fill="none"
+  //             stroke="currentColor"
+  //             strokeWidth="2"
+  //           />
+  //           <circle
+  //             cx="115.36"
+  //             cy="120"
+  //             r="10"
   //             fill="none"
   //             stroke="currentColor"
   //             strokeWidth="2"
@@ -456,95 +702,39 @@ export const FLAGS: Record<string, FlagDefinition> = {
   //       id: "background",
   //       color: null,
   //       path: "M0,0 h300 v200 h-300 Z",
-  //       correctColor: "#87CEEB",
+  //       correctColor: "#FF0000",
+  //       // correctColor: "#c8102e"
   //     },
   //     {
-  //       id: "middle",
+  //       id: "saltire",
   //       color: null,
-  //       path: "M0,80 h300 v40 h-300 Z",
-  //       correctColor: "#000000",
+  //       path: "M-10,-10 L310,210 L290,210 L-30,-10 Z M310,-10 L-10,210 L10,210 L330,-10 Z",
+  //       correctColor: "#008000",
+  //       // correctColor: "#43b02a"
   //     },
   //     {
-  //       id: "white-stripes",
+  //       id: "saltire-border",
   //       color: null,
-  //       path: "M0,85 h300 v5 h-300 Z M0,110 h300 v5 h-300 Z",
+  //       path: "M-20,-10 L320,220 L280,220 L-60,-10 Z M320,-20 L-20,220 L20,220 L360,-20 Z",
   //       correctColor: "#FFFFFF",
   //     },
-  //   ],
-  // },
-
-  // "Burkina Faso": {
-  //   name: "Burkina Faso",
-  //   completeOutlinePath:
-  //     "M0,0 h300 v200 h-300 Z M150,50 l15,45 l-40,-29 h50 l-40,29 z",
-  //   outlineOptions: [
   //     {
-  //       id: "correct",
-  //       svg: (
-  //         <svg viewBox="0 0 300 200" className="w-full h-full">
-  //           <path
-  //             d="M150,50 l15,45 l-40,-29 h50 l-40,29 z"
-  //             fill="none"
-  //             stroke="currentColor"
-  //             strokeWidth="2"
-  //           />
-  //         </svg>
-  //       ),
-  //       isCorrect: true,
-  //     },
-  //     {
-  //       id: "wrong1",
-  //       svg: (
-  //         <svg viewBox="0 0 300 200" className="w-full h-full">
-  //           <path
-  //             d="M150,75 l20,60 l-53,-38 h66 l-53,38 z"
-  //             fill="none"
-  //             stroke="currentColor"
-  //             strokeWidth="2"
-  //           />
-  //         </svg>
-  //       ),
-  //       isCorrect: false,
-  //     },
-  //     {
-  //       id: "wrong2",
-  //       svg: (
-  //         <svg viewBox="0 0 300 200" className="w-full h-full">
-  //           <circle
-  //             cx="150"
-  //             cy="100"
-  //             r="30"
-  //             fill="none"
-  //             stroke="currentColor"
-  //             strokeWidth="2"
-  //           />
-  //         </svg>
-  //       ),
-  //       isCorrect: false,
-  //     },
-  //   ],
-  //   regions: [
-  //     {
-  //       id: "top",
+  //       id: "circle",
   //       color: null,
-  //       path: "M0,0 h300 v100 h-300 Z",
-  //       correctColor: "#FF0000",
+  //       path: "M150,60 a40,40 0 1,0 0.1,0 Z",
+  //       correctColor: "#FFFFFF",
   //     },
   //     {
-  //       id: "bottom",
+  //       id: "stars",
   //       color: null,
-  //       path: "M0,100 h300 v100 h-300 Z",
+  //       path: `M150,50 l10,17.32 h20 l-10,17.32 l10,17.32 h-20 l-10,17.32 l-10,-17.32 h-20 l10,-17.32 l-10,-17.32 h20 z
+  //             M184.64,120 l10,17.32 h20 l-10,17.32 l10,17.32 h-20 l-10,17.32 l-10,-17.32 h-20 l10,-17.32 l-10,-17.32 h20 z
+  //             M115.36,120 l10,17.32 h20 l-10,17.32 l10,17.32 h-20 l-10,17.32 l-10,-17.32 h-20 l10,-17.32 l-10,-17.32 h20 z`,
   //       correctColor: "#008000",
-  //     },
-  //     {
-  //       id: "star",
-  //       color: null,
-  //       path: "M150,50 l15,45 l-40,-29 h50 l-40,29 z",
-  //       correctColor: "#FFD700",
+  //       // correctColor: "#43b02a"
   //     },
   //   ],
   // },
-
   // "South Africa": {
   //   name: "South Africa",
   //   completeOutlinePath:
@@ -632,7 +822,6 @@ export const FLAGS: Record<string, FlagDefinition> = {
   //     },
   //   ],
   // },
-
   // Kenya: {
   //   name: "Kenya",
   //   completeOutlinePath: "M0,0 h300 v200 h-300 Z M0,50 L300,50 M0,150 L300,150",
