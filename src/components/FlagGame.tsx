@@ -15,7 +15,7 @@ const initializeFlag = (flag: FlagDefinition): FlagDefinition => {
     ...flag,
     regions: flag.regions.map((region) => ({
       ...region,
-      color: "#FFFFFF", // Initialize all regions with white
+      color: region.color ?? "#FFFFFF", // Initialize all regions with white
     })),
   };
 };

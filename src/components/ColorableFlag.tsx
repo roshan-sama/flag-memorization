@@ -24,7 +24,7 @@ export const ColorableFlag: React.FC<ColorableFlagProps> = ({
             key={region.id}
             d={region.path}
             fill={region.color || "#FFFFFF"} // Default to white
-            stroke="black"
+            stroke={region.color || "black"}
             strokeWidth="1"
             className="cursor-pointer transition-colors"
             onClick={() => onRegionClick(region.id)}

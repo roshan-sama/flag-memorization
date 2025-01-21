@@ -2,7 +2,7 @@
 import { FlagDefinition } from "../types";
 
 export const FLAGS: Record<string, FlagDefinition> = {
-  // Region Asia-Pacific
+  // // Region Asia-Pacific
   Japan: {
     name: "Japan",
     completeOutlinePath: "M0,0 h300 v200 h-300 Z",
@@ -581,6 +581,7 @@ export const FLAGS: Record<string, FlagDefinition> = {
       },
     ],
   },
+  // TODO:
   // Burundi: {
   //   name: "Burundi",
   //   completeOutlinePath: "M0,0 h300 v200 h-300 Z",
@@ -589,12 +590,14 @@ export const FLAGS: Record<string, FlagDefinition> = {
   //       id: "correct",
   //       svg: (
   //         <svg viewBox="0 0 300 200" className="w-full h-full">
+  //           {/* Vertical line and diagonals */}
   //           <path
-  //             d="M-10,-10 L310,210 M310,-10 L-10,210"
+  //             d="M50,0 v200 M50,0 L250,200 M50,200 L250,0"
   //             fill="none"
   //             stroke="currentColor"
   //             strokeWidth="2"
   //           />
+  //           {/* Center circle */}
   //           <circle
   //             cx="150"
   //             cy="100"
@@ -603,26 +606,27 @@ export const FLAGS: Record<string, FlagDefinition> = {
   //             stroke="currentColor"
   //             strokeWidth="2"
   //           />
+  //           {/* Stars */}
   //           <path
-  //             d="M150,70 l10,17.32 h20 l-10,17.32 l10,17.32 h-20 l-10,17.32 l-10,-17.32 h-20 l10,-17.32 l-10,-17.32 h20 z"
+  //             d="M150,70 l8,13.86 h16 l-8,13.86 l8,13.86 h-16 l-8,13.86 l-8,-13.86 h-16 l8,-13.86 l-8,-13.86 h16 z"
   //             fill="none"
   //             stroke="currentColor"
   //             strokeWidth="2"
-  //             transform="translate(0,-20)"
+  //             transform="translate(0,-10)"
   //           />
   //           <path
-  //             d="M150,70 l10,17.32 h20 l-10,17.32 l10,17.32 h-20 l-10,17.32 l-10,-17.32 h-20 l10,-17.32 l-10,-17.32 h20 z"
+  //             d="M150,70 l8,13.86 h16 l-8,13.86 l8,13.86 h-16 l-8,13.86 l-8,-13.86 h-16 l8,-13.86 l-8,-13.86 h16 z"
   //             fill="none"
   //             stroke="currentColor"
   //             strokeWidth="2"
-  //             transform="translate(34.64,20) rotate(120,150,100)"
+  //             transform="translate(25,15) rotate(120,150,100)"
   //           />
   //           <path
-  //             d="M150,70 l10,17.32 h20 l-10,17.32 l10,17.32 h-20 l-10,17.32 l-10,-17.32 h-20 l10,-17.32 l-10,-17.32 h20 z"
+  //             d="M150,70 l8,13.86 h16 l-8,13.86 l8,13.86 h-16 l-8,13.86 l-8,-13.86 h-16 l8,-13.86 l-8,-13.86 h16 z"
   //             fill="none"
   //             stroke="currentColor"
   //             strokeWidth="2"
-  //             transform="translate(-34.64,20) rotate(240,150,100)"
+  //             transform="translate(-25,15) rotate(240,150,100)"
   //           />
   //         </svg>
   //       ),
@@ -633,7 +637,7 @@ export const FLAGS: Record<string, FlagDefinition> = {
   //       svg: (
   //         <svg viewBox="0 0 300 200" className="w-full h-full">
   //           <path
-  //             d="M0,100 h300 M150,0 v200"
+  //             d="M150,0 v200 M0,100 h300"
   //             fill="none"
   //             stroke="currentColor"
   //             strokeWidth="2"
@@ -655,7 +659,7 @@ export const FLAGS: Record<string, FlagDefinition> = {
   //       svg: (
   //         <svg viewBox="0 0 300 200" className="w-full h-full">
   //           <path
-  //             d="M-10,-10 L310,210 M310,-10 L-10,210"
+  //             d="M100,0 v200 M100,0 L300,200 M100,200 L300,0"
   //             fill="none"
   //             stroke="currentColor"
   //             strokeWidth="2"
@@ -664,30 +668,6 @@ export const FLAGS: Record<string, FlagDefinition> = {
   //             cx="150"
   //             cy="100"
   //             r="40"
-  //             fill="none"
-  //             stroke="currentColor"
-  //             strokeWidth="2"
-  //           />
-  //           <circle
-  //             cx="150"
-  //             cy="60"
-  //             r="10"
-  //             fill="none"
-  //             stroke="currentColor"
-  //             strokeWidth="2"
-  //           />
-  //           <circle
-  //             cx="184.64"
-  //             cy="120"
-  //             r="10"
-  //             fill="none"
-  //             stroke="currentColor"
-  //             strokeWidth="2"
-  //           />
-  //           <circle
-  //             cx="115.36"
-  //             cy="120"
-  //             r="10"
   //             fill="none"
   //             stroke="currentColor"
   //             strokeWidth="2"
@@ -706,17 +686,12 @@ export const FLAGS: Record<string, FlagDefinition> = {
   //       // correctColor: "#c8102e"
   //     },
   //     {
-  //       id: "saltire",
+  //       id: "green-section",
   //       color: null,
-  //       path: "M-10,-10 L310,210 L290,210 L-30,-10 Z M310,-10 L-10,210 L10,210 L330,-10 Z",
+  //       path: `M50,0 v200 h200 v-200 h-200 Z
+  //              M150,60 a40,40 0 1,0 0.1,0 Z`, // Subtract the circle
   //       correctColor: "#008000",
   //       // correctColor: "#43b02a"
-  //     },
-  //     {
-  //       id: "saltire-border",
-  //       color: null,
-  //       path: "M-20,-10 L320,220 L280,220 L-60,-10 Z M320,-20 L-20,220 L20,220 L360,-20 Z",
-  //       correctColor: "#FFFFFF",
   //     },
   //     {
   //       id: "circle",
@@ -727,14 +702,113 @@ export const FLAGS: Record<string, FlagDefinition> = {
   //     {
   //       id: "stars",
   //       color: null,
-  //       path: `M150,50 l10,17.32 h20 l-10,17.32 l10,17.32 h-20 l-10,17.32 l-10,-17.32 h-20 l10,-17.32 l-10,-17.32 h20 z
-  //             M184.64,120 l10,17.32 h20 l-10,17.32 l10,17.32 h-20 l-10,17.32 l-10,-17.32 h-20 l10,-17.32 l-10,-17.32 h20 z
-  //             M115.36,120 l10,17.32 h20 l-10,17.32 l10,17.32 h-20 l-10,17.32 l-10,-17.32 h-20 l10,-17.32 l-10,-17.32 h20 z`,
+  //       path: `M150,60 l8,13.86 h16 l-8,13.86 l8,13.86 h-16 l-8,13.86 l-8,-13.86 h-16 l8,-13.86 l-8,-13.86 h16 z
+  //              M175,115 l8,13.86 h16 l-8,13.86 l8,13.86 h-16 l-8,13.86 l-8,-13.86 h-16 l8,-13.86 l-8,-13.86 h16 z
+  //              M125,115 l8,13.86 h16 l-8,13.86 l8,13.86 h-16 l-8,13.86 l-8,-13.86 h-16 l8,-13.86 l-8,-13.86 h16 z`,
   //       correctColor: "#008000",
   //       // correctColor: "#43b02a"
   //     },
   //   ],
   // },
+  Cameroon: {
+    name: "Cameroon",
+    completeOutlinePath:
+      "M0,0 h300 v200 h-300 Z M100,0 L100,200 M200,0 L200,200",
+    outlineOptions: [
+      {
+        id: "correct",
+        svg: (
+          <svg viewBox="0 0 300 200" className="w-full h-full">
+            <path
+              d="M100,0 L100,200 M200,0 L200,200"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            />
+            <g transform="rotate(18, 150, 73) scale(0.7 0.7) translate(72 60)">
+              <path
+                d="M93,73 L132.3844639644799,85.7984360834163 L132.386031320628,127.21022142882376 L156.7285360355201,93.70830458581068 L196.11396867937202,106.50375938067097 L171.774,73 L196.11396867937202,39.496240619329036 L156.7285360355201,52.29169541418933 L132.386031320628,18.789778571176242 L132.3844639644799,60.20156391658369 Z"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+              />
+            </g>
+          </svg>
+        ),
+        isCorrect: true,
+      },
+      {
+        id: "wrong1",
+        svg: (
+          <svg viewBox="0 0 300 200" className="w-full h-full">
+            <path
+              d="M0,67 L300,67 M0,133 L300,133"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            />
+            <path
+              d="M150,73 l17.6336,54.2705 l-46.1903-33.5615 h57.1134 l-46.1903,33.5615 z"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            />
+          </svg>
+        ),
+        isCorrect: false,
+      },
+      {
+        id: "wrong2",
+        svg: (
+          <svg viewBox="0 0 300 200" className="w-full h-full">
+            <path
+              d="M150,0 L150,200"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            />
+            <path
+              d="M150,85 l17.6336,54.2705 l-46.1903-33.5615 h57.1134 l-46.1903,33.5615"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            />
+          </svg>
+        ),
+        isCorrect: false,
+      },
+    ],
+    regions: [
+      {
+        id: "left",
+        color: null,
+        path: "M0,0 h100 v200 h-100 Z",
+        correctColor: "#008000",
+        // correctColor: "#007a5e"
+      },
+      {
+        id: "middle",
+        color: null,
+        path: "M100,0 h100 v200 h-100 Z",
+        correctColor: "#FF0000",
+        // correctColor: "#ce1126"
+      },
+      {
+        id: "right",
+        color: null,
+        path: "M200,0 h100 v200 h-100 Z",
+        correctColor: "#FFD700",
+        // correctColor: "#fcd116"
+      },
+      {
+        id: "star",
+        color: "#808080",
+        path: "M150,67 l17.6336,54.2705 l-46.1903-33.5615 h57.1134 l-46.1903,33.5615 Z",
+        correctColor: "#FFD700",
+        // correctColor: "#fcd116"
+      },
+    ],
+  },
   // "South Africa": {
   //   name: "South Africa",
   //   completeOutlinePath:
@@ -917,3 +991,4 @@ export const FLAGS: Record<string, FlagDefinition> = {
   //   ],
   // },
 };
+1;
