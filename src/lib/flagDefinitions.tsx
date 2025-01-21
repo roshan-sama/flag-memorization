@@ -2,7 +2,7 @@
 import { FlagDefinition } from "../types";
 
 export const FLAGS: Record<string, FlagDefinition> = {
-  // // Region Asia-Pacific
+  // Region Asia-Pacific
   Japan: {
     name: "Japan",
     completeOutlinePath: "M0,0 h300 v200 h-300 Z",
@@ -1258,6 +1258,311 @@ export const FLAGS: Record<string, FlagDefinition> = {
         color: "#808080",
         path: "M62.595,121 l5.145,15.83 -13.465,-9.785 h16.645 l-13.465,9.785 z",
         correctColor: "#FFFFFF",
+      },
+    ],
+  },
+  Congo: {
+    name: "Congo",
+    completeOutlinePath: "M0,0 h300 v200 h-300 Z M0,200 L200,0 M100,200 L300,0",
+    outlineOptions: [
+      {
+        id: "correct",
+        svg: (
+          <svg viewBox="0 0 300 200" className="w-full h-full">
+            <path
+              d="M0,200 L200,0 M100,200 L300,0"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            />
+          </svg>
+        ),
+        isCorrect: true,
+      },
+      {
+        id: "wrong1",
+        svg: (
+          <svg viewBox="0 0 300 200" className="w-full h-full">
+            <path
+              d="M0,0 L300,200 M0,200 L300,0"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            />
+          </svg>
+        ),
+        isCorrect: false,
+      },
+      {
+        id: "wrong2",
+        svg: (
+          <svg viewBox="0 0 300 200" className="w-full h-full">
+            <path
+              d="M150,0 L150,200 M0,100 L300,100"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            />
+          </svg>
+        ),
+        isCorrect: false,
+      },
+    ],
+    regions: [
+      {
+        id: "green-section",
+        color: null,
+        path: "M0,0 h300 v200 h-300 Z",
+        correctColor: "#008000",
+        // Original color: #009543
+      },
+      {
+        id: "yellow-section",
+        color: null,
+        path: "M0,200 L200,0 h100 v200 h-300 Z",
+        correctColor: "#FFD700",
+        // Original color: #fbde4a
+      },
+      {
+        id: "red-section",
+        color: null,
+        path: "M300,0 v200 h-200 Z",
+        correctColor: "#FF0000",
+        // Original color: #dc241f
+      },
+    ],
+  },
+  Djibouti: {
+    name: "Djibouti",
+    completeOutlinePath:
+      "M0,0 h300 v200 h-300 Z M150,100 h300 M150,100 L0,0 L0,200 Z",
+    outlineOptions: [
+      {
+        id: "correct",
+        svg: (
+          <svg viewBox="0 0 300 200" className="w-full h-full">
+            <path
+              d="M150,100 h300 M150,100 L0,0 L0,200 Z"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            />
+          </svg>
+        ),
+        isCorrect: true,
+      },
+      {
+        id: "wrong1",
+        svg: (
+          <svg viewBox="0 0 300 200" className="w-full h-full">
+            <path
+              d="M150,100 h300 M150,0 L0,100 L150,200 Z"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            />
+          </svg>
+        ),
+        isCorrect: false,
+      },
+      {
+        id: "wrong2",
+        svg: (
+          <svg viewBox="0 0 300 200" className="w-full h-full">
+            <path
+              d="M0,100 h300 M100,50 L0,0 L0,200 Z"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            />
+          </svg>
+        ),
+        isCorrect: false,
+      },
+    ],
+    regions: [
+      {
+        id: "background",
+        color: null,
+        path: "M0,0 h300 v200 h-300 Z",
+        correctColor: "#87CEEB",
+        // Original color: #6ab2e7
+      },
+      {
+        id: "green-stripe",
+        color: null,
+        path: "M0,100 h300 v100 h-300 Z",
+        correctColor: "#008000",
+        // Original color: #12ad2b
+      },
+      {
+        id: "white-triangle",
+        color: null,
+        path: "M0,0 L150,100 L0,200 Z",
+        correctColor: "#FFFFFF",
+      },
+      {
+        id: "star",
+        color: "#808080",
+        path: "M55,75 l6.205,19.098 h20.081 l-16.246,11.803 l6.205,19.099 l-16.245-11.803 l-16.246,11.803 l6.205-19.099 l-16.246-11.803 h20.081 z",
+        correctColor: "#FF0000",
+        // Original color: #d7141a
+      },
+    ],
+  },
+  DemocraticRepublicOfCongo: {
+    name: "Democratic Republic of the Congo",
+    completeOutlinePath:
+      "M0,0 h300 v200 h-300 Z M281.25 0L0 150 v50h18.746L300 50V0h-18.7466z M300 0L0 160 v40 h.0266 L300 40 V0 z",
+    outlineOptions: [
+      {
+        id: "correct",
+        svg: (
+          <svg viewBox="0 0 300 200" className="w-full h-full">
+            <path
+              d="M0,0 h300 v200 h-300 Z M281.25 0L0 150 v50h18.746L300 50V0h-18.7466z M300 0L0 160 v40 h.0266 L300 40 V0 z"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            />
+          </svg>
+        ),
+        isCorrect: true,
+      },
+      {
+        id: "wrong1",
+        svg: (
+          <svg viewBox="0 0 300 200" className="w-full h-full">
+            <path
+              d="M0,100 L300,0 M0,200 L300,100"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            />
+          </svg>
+        ),
+        isCorrect: false,
+      },
+      {
+        id: "wrong2",
+        svg: (
+          <svg viewBox="0 0 300 200" className="w-full h-full">
+            <path
+              d="M0,133 L300,33 M0,166 L300,66"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            />
+          </svg>
+        ),
+        isCorrect: false,
+      },
+    ],
+    regions: [
+      {
+        id: "background",
+        color: null,
+        path: "M0,0 h300 v200 h-300 Z",
+        correctColor: "#0000FF",
+        // Original color: #007fff
+      },
+      {
+        id: "yellow-stripe",
+        color: null,
+        path: "M281.25 0L0 150 v50h18.746L300 50V0h-18.7466z",
+        correctColor: "#FFD700",
+        // Original color: #f7d618
+      },
+      {
+        id: "red-stripe",
+        color: null,
+        path: "M300 0L0 160 v40 h.0266 L300 40 V0 z",
+        correctColor: "#FF0000",
+        // Original color: #ce1021
+      },
+      {
+        id: "star",
+        color: null,
+        path: "M45.35,9.75 l8.05,26.05 h26.06 l-21.08,16.11 l8.05,26.05 l-21.08-16.1 l-21.08,16.1 l8.05-26.05 l-21.08-16.1 h26.05 l8.05-26.06 z",
+        correctColor: "#FFD700",
+        // Original color: #f7d618
+      },
+    ],
+  },
+  // TODO: Emblem
+  Egypt: {
+    name: "Egypt",
+    completeOutlinePath: "M0,0 h300 v200 h-300 Z M0,67 h300 M0,133 h300",
+    outlineOptions: [
+      {
+        id: "correct",
+        svg: (
+          <svg viewBox="0 0 300 200" className="w-full h-full">
+            <path
+              d="M0,67 h300 M0,133 h300"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            />
+          </svg>
+        ),
+        isCorrect: true,
+      },
+      {
+        id: "wrong1",
+        svg: (
+          <svg viewBox="0 0 300 200" className="w-full h-full">
+            <path
+              d="M100,0 L100,200 M200,0 L200,200"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            />
+          </svg>
+        ),
+        isCorrect: false,
+      },
+      {
+        id: "wrong2",
+        svg: (
+          <svg viewBox="0 0 300 200" className="w-full h-full">
+            <path
+              d="M0,100 h300 M150,0 v200"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            />
+          </svg>
+        ),
+        isCorrect: false,
+      },
+    ],
+    regions: [
+      {
+        id: "top-stripe",
+        color: null,
+        path: "M0,0 h300 v67 h-300 Z",
+        correctColor: "#FF0000",
+        // Original color: #ce1126
+      },
+      {
+        id: "middle-stripe",
+        color: null,
+        path: "M0,67 h300 v66 h-300 Z",
+        correctColor: "#FFFFFF",
+      },
+      {
+        id: "bottom-stripe",
+        color: null,
+        path: "M0,133 h300 v67 h-300 Z",
+        correctColor: "#000000",
+      },
+      {
+        id: "eagle",
+        color: null,
+        path: "M140,58 c7.5-5.8,15.8-5.8,20,0 c4.2,5.8,15,20.8,15,35 c0,14.2-8.3,25.8-25,25.8 c-16.7,0-25-11.7-25-25.8 c0-14.2,7.5-29.2,15-35 M140,75 c-10,0-25,5-30,15 c15-5,25-5,30-2 M160,75 c10,0,25,5,30,15 c-15-5-25-5-30-2 M150,75 l-10,25 h20 z",
+        correctColor: "#FFD700",
+        // Eagle of Saladin in gold
       },
     ],
   },
