@@ -2,13 +2,19 @@
 Game has two stages - first is to select the correct outline, second is to color flags right
 This ensures we learn both what the flag looks like and how it is colored
 
-TODO:
+## TODO:
 1) Fix flag definitions - currently generated SVGs for some flags are not optimal
 2) Ensure accurate flag colors by swapping the generic red, blue etc. with the specific colors to the flag - if a flag has a lighter shade of blue, the color palette should swap the defualt blue with that specific flag blue so that end end result looks right
 3) Fix shuffling, and ensure more complex and nuanced variations for the flag outline selections. Right now, the correct option seems obvious
 
-Similar apps:
+## Similar apps:
 1) [Paint the flag](https://www.crazygames.com/game/paint-the-flag): Does not have the flag outline selection step, does not have large color palette but rather only the colors of the flag being painted
+
+## Other Flag knowledge apps:
+1) [World flags](https://www.sporcle.com/games/g/worldflags): Let's you type country names to verify if you know the name of the country that corresponds to the flag
+
+# About this app
+The app was generated using Vite, see the below section for details:
 
 # React + TypeScript + Vite
 
