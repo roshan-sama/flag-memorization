@@ -582,134 +582,134 @@ export const FLAGS: Record<string, FlagDefinition> = {
     ],
   },
   // TODO:
-  // Burundi: {
-  //   name: "Burundi",
-  //   completeOutlinePath: "M0,0 h300 v200 h-300 Z",
-  //   outlineOptions: [
-  //     {
-  //       id: "correct",
-  //       svg: (
-  //         <svg viewBox="0 0 300 200" className="w-full h-full">
-  //           {/* Vertical line and diagonals */}
-  //           <path
-  //             d="M50,0 v200 M50,0 L250,200 M50,200 L250,0"
-  //             fill="none"
-  //             stroke="currentColor"
-  //             strokeWidth="2"
-  //           />
-  //           {/* Center circle */}
-  //           <circle
-  //             cx="150"
-  //             cy="100"
-  //             r="40"
-  //             fill="none"
-  //             stroke="currentColor"
-  //             strokeWidth="2"
-  //           />
-  //           {/* Stars */}
-  //           <path
-  //             d="M150,70 l8,13.86 h16 l-8,13.86 l8,13.86 h-16 l-8,13.86 l-8,-13.86 h-16 l8,-13.86 l-8,-13.86 h16 z"
-  //             fill="none"
-  //             stroke="currentColor"
-  //             strokeWidth="2"
-  //             transform="translate(0,-10)"
-  //           />
-  //           <path
-  //             d="M150,70 l8,13.86 h16 l-8,13.86 l8,13.86 h-16 l-8,13.86 l-8,-13.86 h-16 l8,-13.86 l-8,-13.86 h16 z"
-  //             fill="none"
-  //             stroke="currentColor"
-  //             strokeWidth="2"
-  //             transform="translate(25,15) rotate(120,150,100)"
-  //           />
-  //           <path
-  //             d="M150,70 l8,13.86 h16 l-8,13.86 l8,13.86 h-16 l-8,13.86 l-8,-13.86 h-16 l8,-13.86 l-8,-13.86 h16 z"
-  //             fill="none"
-  //             stroke="currentColor"
-  //             strokeWidth="2"
-  //             transform="translate(-25,15) rotate(240,150,100)"
-  //           />
-  //         </svg>
-  //       ),
-  //       isCorrect: true,
-  //     },
-  //     {
-  //       id: "wrong1",
-  //       svg: (
-  //         <svg viewBox="0 0 300 200" className="w-full h-full">
-  //           <path
-  //             d="M150,0 v200 M0,100 h300"
-  //             fill="none"
-  //             stroke="currentColor"
-  //             strokeWidth="2"
-  //           />
-  //           <circle
-  //             cx="150"
-  //             cy="100"
-  //             r="40"
-  //             fill="none"
-  //             stroke="currentColor"
-  //             strokeWidth="2"
-  //           />
-  //         </svg>
-  //       ),
-  //       isCorrect: false,
-  //     },
-  //     {
-  //       id: "wrong2",
-  //       svg: (
-  //         <svg viewBox="0 0 300 200" className="w-full h-full">
-  //           <path
-  //             d="M100,0 v200 M100,0 L300,200 M100,200 L300,0"
-  //             fill="none"
-  //             stroke="currentColor"
-  //             strokeWidth="2"
-  //           />
-  //           <circle
-  //             cx="150"
-  //             cy="100"
-  //             r="40"
-  //             fill="none"
-  //             stroke="currentColor"
-  //             strokeWidth="2"
-  //           />
-  //         </svg>
-  //       ),
-  //       isCorrect: false,
-  //     },
-  //   ],
-  //   regions: [
-  //     {
-  //       id: "background",
-  //       color: null,
-  //       path: "M0,0 h300 v200 h-300 Z",
-  //       correctColor: "#FF0000",
-  //       // correctColor: "#c8102e"
-  //     },
-  //     {
-  //       id: "green-section",
-  //       color: null,
-  //       path: `M50,0 v200 h200 v-200 h-200 Z
-  //              M150,60 a40,40 0 1,0 0.1,0 Z`, // Subtract the circle
-  //       correctColor: "#008000",
-  //       // correctColor: "#43b02a"
-  //     },
-  //     {
-  //       id: "circle",
-  //       color: null,
-  //       path: "M150,60 a40,40 0 1,0 0.1,0 Z",
-  //       correctColor: "#FFFFFF",
-  //     },
-  //     {
-  //       id: "stars",
-  //       color: null,
-  //       path: `M150,60 l8,13.86 h16 l-8,13.86 l8,13.86 h-16 l-8,13.86 l-8,-13.86 h-16 l8,-13.86 l-8,-13.86 h16 z
-  //              M175,115 l8,13.86 h16 l-8,13.86 l8,13.86 h-16 l-8,13.86 l-8,-13.86 h-16 l8,-13.86 l-8,-13.86 h16 z
-  //              M125,115 l8,13.86 h16 l-8,13.86 l8,13.86 h-16 l-8,13.86 l-8,-13.86 h-16 l8,-13.86 l-8,-13.86 h16 z`,
-  //       correctColor: "#008000",
-  //       // correctColor: "#43b02a"
-  //     },
-  //   ],
-  // },
+  Burundi: {
+    name: "Burundi",
+    completeOutlinePath: "M0,0 h300 v200 h-300 Z",
+    outlineOptions: [
+      {
+        id: "correct",
+        svg: (
+          <svg viewBox="0 0 300 200" className="w-full h-full">
+            {/* Vertical line and diagonals */}
+            <path
+              d="M50,0 v200 M50,0 L250,200 M50,200 L250,0"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            />
+            {/* Center circle */}
+            <circle
+              cx="150"
+              cy="100"
+              r="40"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            />
+            {/* Stars */}
+            <path
+              d="M150,70 l8,13.86 h16 l-8,13.86 l8,13.86 h-16 l-8,13.86 l-8,-13.86 h-16 l8,-13.86 l-8,-13.86 h16 z"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              transform="translate(0,-10)"
+            />
+            <path
+              d="M150,70 l8,13.86 h16 l-8,13.86 l8,13.86 h-16 l-8,13.86 l-8,-13.86 h-16 l8,-13.86 l-8,-13.86 h16 z"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              transform="translate(25,15) rotate(120,150,100)"
+            />
+            <path
+              d="M150,70 l8,13.86 h16 l-8,13.86 l8,13.86 h-16 l-8,13.86 l-8,-13.86 h-16 l8,-13.86 l-8,-13.86 h16 z"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              transform="translate(-25,15) rotate(240,150,100)"
+            />
+          </svg>
+        ),
+        isCorrect: true,
+      },
+      {
+        id: "wrong1",
+        svg: (
+          <svg viewBox="0 0 300 200" className="w-full h-full">
+            <path
+              d="M150,0 v200 M0,100 h300"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            />
+            <circle
+              cx="150"
+              cy="100"
+              r="40"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            />
+          </svg>
+        ),
+        isCorrect: false,
+      },
+      {
+        id: "wrong2",
+        svg: (
+          <svg viewBox="0 0 300 200" className="w-full h-full">
+            <path
+              d="M100,0 v200 M100,0 L300,200 M100,200 L300,0"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            />
+            <circle
+              cx="150"
+              cy="100"
+              r="40"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            />
+          </svg>
+        ),
+        isCorrect: false,
+      },
+    ],
+    regions: [
+      {
+        id: "background",
+        color: null,
+        path: "M0,0 h300 v200 h-300 Z",
+        correctColor: "#FF0000",
+        // correctColor: "#c8102e"
+      },
+      {
+        id: "green-section",
+        color: null,
+        path: `M50,0 v200 h200 v-200 h-200 Z
+               M150,60 a40,40 0 1,0 0.1,0 Z`, // Subtract the circle
+        correctColor: "#008000",
+        // correctColor: "#43b02a"
+      },
+      {
+        id: "circle",
+        color: null,
+        path: "M150,60 a40,40 0 1,0 0.1,0 Z",
+        correctColor: "#FFFFFF",
+      },
+      {
+        id: "stars",
+        color: null,
+        path: `M150,60 l8,13.86 h16 l-8,13.86 l8,13.86 h-16 l-8,13.86 l-8,-13.86 h-16 l8,-13.86 l-8,-13.86 h16 z
+               M175,115 l8,13.86 h16 l-8,13.86 l8,13.86 h-16 l-8,13.86 l-8,-13.86 h-16 l8,-13.86 l-8,-13.86 h16 z
+               M125,115 l8,13.86 h16 l-8,13.86 l8,13.86 h-16 l-8,13.86 l-8,-13.86 h-16 l8,-13.86 l-8,-13.86 h16 z`,
+        correctColor: "#008000",
+        // correctColor: "#43b02a"
+      },
+    ],
+  },
   Cameroon: {
     name: "Cameroon",
     completeOutlinePath:
@@ -806,6 +806,458 @@ export const FLAGS: Record<string, FlagDefinition> = {
         path: "M150,67 l17.6336,54.2705 l-46.1903-33.5615 h57.1134 l-46.1903,33.5615 Z",
         correctColor: "#FFD700",
         // correctColor: "#fcd116"
+      },
+    ],
+  },
+  // TODO:
+  CapeVerde: {
+    name: "Cape Verde",
+    completeOutlinePath:
+      "M0,0 h300 v200 h-300 Z M0,75 h300 M0,83.33 h300 M0,116.67 h300 M0,125 h300",
+    outlineOptions: [
+      {
+        id: "correct",
+        svg: (
+          <svg viewBox="0 0 300 200" className="w-full h-full">
+            {/* Horizontal stripes */}
+            <path
+              d="M0,75 h300 M0,83.33 h300 M0,116.67 h300 M0,125 h300"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            />
+            {/* Star outlines - 10 stars in circular arrangement */}
+            <g transform="translate(150, 100)">
+              {/* Center top star */}
+              <path
+                d="M0,-40 l4,-12 m4,12 l12,-4 m-12,4 l4,12 m-4,-12 l-12,-4"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+              />
+              {/* Upper right stars */}
+              <path
+                d="M30,-25 l4,-12 m4,12 l12,-4 m-12,4 l4,12 m-4,-12 l-12,-4"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+              />
+              <path
+                d="M40,5 l4,-12 m4,12 l12,-4 m-12,4 l4,12 m-4,-12 l-12,-4"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+              />
+              {/* Lower right stars */}
+              <path
+                d="M30,35 l4,-12 m4,12 l12,-4 m-12,4 l4,12 m-4,-12 l-12,-4"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+              />
+              <path
+                d="M0,40 l4,-12 m4,12 l12,-4 m-12,4 l4,12 m-4,-12 l-12,-4"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+              />
+              {/* Lower left stars */}
+              <path
+                d="M-30,35 l4,-12 m4,12 l12,-4 m-12,4 l4,12 m-4,-12 l-12,-4"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+              />
+              <path
+                d="M-40,5 l4,-12 m4,12 l12,-4 m-12,4 l4,12 m-4,-12 l-12,-4"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+              />
+              {/* Upper left stars */}
+              <path
+                d="M-30,-25 l4,-12 m4,12 l12,-4 m-12,4 l4,12 m-4,-12 l-12,-4"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+              />
+            </g>
+          </svg>
+        ),
+        isCorrect: true,
+      },
+      {
+        id: "wrong1",
+        svg: (
+          <svg viewBox="0 0 300 200" className="w-full h-full">
+            <path
+              d="M0,50 h300 M0,100 h300 M0,150 h300"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            />
+            <circle
+              cx="150"
+              cy="100"
+              r="40"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            />
+          </svg>
+        ),
+        isCorrect: false,
+      },
+      {
+        id: "wrong2",
+        svg: (
+          <svg viewBox="0 0 300 200" className="w-full h-full">
+            <path
+              d="M75,0 v200 M150,0 v200 M225,0 v200"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            />
+          </svg>
+        ),
+        isCorrect: false,
+      },
+    ],
+    regions: [
+      {
+        id: "background",
+        color: null,
+        path: "M0,0 h300 v200 h-300 Z",
+        correctColor: "#0000FF",
+        // correctColor: "#003893"
+      },
+      {
+        id: "white-top",
+        color: null,
+        path: "M0,75 h300 v8.33 h-300 Z",
+        correctColor: "#FFFFFF",
+      },
+      {
+        id: "red-stripe",
+        color: null,
+        path: "M0,83.33 h300 v33.34 h-300 Z",
+        correctColor: "#FF0000",
+        // correctColor: "#cf2027"
+      },
+      {
+        id: "white-bottom",
+        color: null,
+        path: "M0,116.67 h300 v8.33 h-300 Z",
+        correctColor: "#FFFFFF",
+      },
+      {
+        id: "stars",
+        color: null,
+        path: `M150,60 l4,-12 12,-4 -12,-4 -4,-12 -4,12 -12,4 12,4 4,12 Z
+               M180,75 l4,-12 12,-4 -12,-4 -4,-12 -4,12 -12,4 12,4 4,12 Z
+               M190,105 l4,-12 12,-4 -12,-4 -4,-12 -4,12 -12,4 12,4 4,12 Z
+               M180,135 l4,-12 12,-4 -12,-4 -4,-12 -4,12 -12,4 12,4 4,12 Z
+               M150,140 l4,-12 12,-4 -12,-4 -4,-12 -4,12 -12,4 12,4 4,12 Z
+               M120,135 l4,-12 12,-4 -12,-4 -4,-12 -4,12 -12,4 12,4 4,12 Z
+               M110,105 l4,-12 12,-4 -12,-4 -4,-12 -4,12 -12,4 12,4 4,12 Z
+               M120,75 l4,-12 12,-4 -12,-4 -4,-12 -4,12 -12,4 12,4 4,12 Z`,
+        correctColor: "#FFD700",
+        // correctColor: "#f7d116"
+      },
+    ],
+  },
+  // TODO: Fix center, red, vertical line
+  CentralAfricanRepublic: {
+    name: "Central African Republic",
+    completeOutlinePath:
+      "M0,0 h300 v200 h-300 Z M150,0 v200 M0,50 h300 M0,100 h300 M0,150 h300",
+    outlineOptions: [
+      {
+        id: "correct",
+        svg: (
+          <svg viewBox="0 0 300 200" className="w-full h-full">
+            {/* Horizontal and vertical lines */}
+            <path
+              d="M150,0 v200 M0,50 h300 M0,100 h300 M0,150 h300"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            />
+            {/* Star outline - using line segments */}
+            <path
+              d="M60,15 l10,30
+                 M70,45 l30,-10
+                 M100,35 l-25,-15
+                 M75,20 l25,15
+                 M100,35 l-30,-10"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            />
+          </svg>
+        ),
+        isCorrect: true,
+      },
+      {
+        id: "wrong1",
+        svg: (
+          <svg viewBox="0 0 300 200" className="w-full h-full">
+            <path
+              d="M0,50 h300 M0,100 h300 M0,150 h300"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            />
+          </svg>
+        ),
+        isCorrect: false,
+      },
+      {
+        id: "wrong2",
+        svg: (
+          <svg viewBox="0 0 300 200" className="w-full h-full">
+            <path
+              d="M100,0 v200 M200,0 v200"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            />
+            <path
+              d="M60,15 l10,30
+                 M70,45 l30,-10
+                 M100,35 l-25,-15
+                 M75,20 l25,15
+                 M100,35 l-30,-10"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            />
+          </svg>
+        ),
+        isCorrect: false,
+      },
+    ],
+    regions: [
+      {
+        id: "background",
+        color: null,
+        path: "M0,0 h300 v200 h-300 Z",
+        correctColor: "#FFFFFF",
+      },
+      {
+        id: "top-stripe",
+        color: null,
+        path: "M0,0 h300 v50 h-300 Z",
+        correctColor: "#0000FF",
+        // correctColor: "#003082"
+      },
+      {
+        id: "middle-green-stripe",
+        color: null,
+        path: "M0,100 h300 v50 h-300 Z",
+        correctColor: "#008000",
+        // correctColor: "#289728"
+      },
+      {
+        id: "vertical-stripe",
+        color: null,
+        path: "M125,0 h50 v200 h-50 Z",
+        correctColor: "#FF0000",
+        // correctColor: "#d21034"
+      },
+      {
+        id: "yellow-star",
+        color: "#808080",
+        path: `M55,5 l12,36.8 l-31.408,-22.824 h38.84 l-31.408,22.824 Z`,
+        correctColor: "#FFD700",
+        // correctColor: "#ffce00"
+      },
+    ],
+  },
+  Chad: {
+    name: "Chad",
+    completeOutlinePath:
+      "M0,0 h300 v200 h-300 Z M100,0 L100,200 M200,0 L200,200",
+    outlineOptions: [
+      {
+        id: "correct",
+        svg: (
+          <svg viewBox="0 0 300 200" className="w-full h-full">
+            <path
+              d="M100,0 L100,200 M200,0 L200,200"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            />
+          </svg>
+        ),
+        isCorrect: true,
+      },
+      {
+        id: "wrong1",
+        svg: (
+          <svg viewBox="0 0 300 200" className="w-full h-full">
+            <path
+              d="M0,67 L300,67 M0,133 L300,133"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            />
+          </svg>
+        ),
+        isCorrect: false,
+      },
+      {
+        id: "wrong2",
+        svg: (
+          <svg viewBox="0 0 300 200" className="w-full h-full">
+            <path
+              d="M150,0 L150,200"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            />
+          </svg>
+        ),
+        isCorrect: false,
+      },
+    ],
+    regions: [
+      {
+        id: "left",
+        color: null,
+        path: "M0,0 h100 v200 h-100 Z",
+        correctColor: "#0000FF",
+        // Original color: #002664
+      },
+      {
+        id: "middle",
+        color: null,
+        path: "M100,0 h100 v200 h-100 Z",
+        correctColor: "#FFD700",
+        // Original color: #fecb00
+      },
+      {
+        id: "right",
+        color: null,
+        path: "M200,0 h100 v200 h-100 Z",
+        correctColor: "#FF0000",
+        // Original color: #c60c30
+      },
+    ],
+  },
+  Comoros: {
+    name: "Comoros",
+    completeOutlinePath:
+      "M0,0 h300 v200 h-300 Z M75,50 h300 M150,100 h300 M75,150 h300 M150,100 L0,200 L0,0 Z",
+    outlineOptions: [
+      {
+        id: "correct",
+        svg: (
+          <svg viewBox="0 0 300 200" className="w-full h-full">
+            <path
+              d="M75,50 h300 M150,100 h300 M75,150 h300 M150,100 L0,200 L0,0 Z"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            />
+          </svg>
+        ),
+        isCorrect: true,
+      },
+      {
+        id: "wrong1",
+        svg: (
+          <svg viewBox="0 0 300 200" className="w-full h-full">
+            <path
+              d="M0,50 h300 M0,100 h300 M0,150 h300"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            />
+          </svg>
+        ),
+        isCorrect: false,
+      },
+      {
+        id: "wrong2",
+        svg: (
+          <svg viewBox="0 0 300 200" className="w-full h-full">
+            <path
+              d="M150,100 L0,200 L0,0 Z"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            />
+          </svg>
+        ),
+        isCorrect: false,
+      },
+    ],
+    regions: [
+      {
+        id: "background",
+        color: null,
+        path: "M0,0 h300 v200 h-300 Z",
+        correctColor: "#FFFFFF",
+      },
+      {
+        id: "yellow-stripe",
+        color: null,
+        path: "M0,0 h300 v50 h-270 Z",
+        correctColor: "#FFD700",
+        // Original color: #ffd100
+      },
+      {
+        id: "red-stripe",
+        color: null,
+        path: "M30,100 h300 v50 h-300 Z",
+        correctColor: "#FF0000",
+        // Original color: #ef3340
+      },
+      {
+        id: "blue-stripe",
+        color: null,
+        path: "M0,150 h300 v50 h-300 Z",
+        correctColor: "#0000FF",
+        // Original color: #003da5
+      },
+      {
+        id: "green-triangle",
+        color: null,
+        path: "M0,0 L150,100 L0,200 Z",
+        correctColor: "#008000",
+        // Original color: #009639
+      },
+      {
+        id: "crescent",
+        color: "#808080",
+        path: "M62.595,60 a41.25,41.25 0 0 0 0,81.91 42.5,42.5 0 1 1 0-81.91",
+        correctColor: "#FFFFFF",
+      },
+      {
+        id: "star1",
+        color: "#808080",
+        path: "M62.595,64.75 l5.145,15.83 -13.465,-9.785 h16.645 l-13.465,9.785 z",
+        correctColor: "#FFFFFF",
+      },
+      {
+        id: "star2",
+        color: "#808080",
+        path: "M62.595,83.5 l5.145,15.83 -13.465,-9.785 h16.645 l-13.465,9.785 z",
+        correctColor: "#FFFFFF",
+      },
+      {
+        id: "star3",
+        color: "#808080",
+        path: "M62.595,102.25 l5.145,15.83 -13.465,-9.785 h16.645 l-13.465,9.785 z",
+        correctColor: "#FFFFFF",
+      },
+      {
+        id: "star4",
+        color: "#808080",
+        path: "M62.595,121 l5.145,15.83 -13.465,-9.785 h16.645 l-13.465,9.785 z",
+        correctColor: "#FFFFFF",
       },
     ],
   },
