@@ -6,6 +6,8 @@ This ensures we learn both what the flag looks like and how it is colored
 1) Fix flag definitions - currently generated SVGs for some flags are not optimal
 2) Ensure accurate flag colors by swapping the generic red, blue etc. with the specific colors to the flag - if a flag has a lighter shade of blue, the color palette should swap the defualt blue with that specific flag blue so that end end result looks right
 3) Fix shuffling, and ensure more complex and nuanced variations for the flag outline selections. Right now, the correct option seems obvious
+4) Allow for additional complex SVG segments that may not need to be colored in, for complex emblems like Mexico or egypt's eagle
+5) Potential refactor to allow for very complex SVGs, and the 'regions' to be colored would be identified by ids instead - this could make the entire app very simple, except for the cases where a thick stroke or other non-polygon area is used to denote a part of the flag
 
 ## Similar apps:
 1) [Paint the flag](https://www.crazygames.com/game/paint-the-flag): Does not have the flag outline selection step, does not have large color palette but rather only the colors of the flag being painted
